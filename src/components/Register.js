@@ -72,7 +72,7 @@ const RegistrationPage = () => {
   const handleSubmit = () => {
     if (validateForm()) {
       // Save user data to JSON server
-      fetch('http://localhost:3001/login', {
+      fetch('https://655500aa63cafc694fe75243.mockapi.io/aman', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

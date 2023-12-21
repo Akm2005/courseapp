@@ -70,15 +70,5 @@
         }
       ]
     }
-  ],
-  "login": [
-    {
-      "id": "1",
-      "username": "aman01",
-      "firstname": "aman",
-      "lastname": "mishra",
-      "email": "12defence2005@gmail.com",
-      "password": "705272"
-    }
   ]
 }

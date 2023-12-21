@@ -1,22 +1,23 @@
 // CourseList.js
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+
 import axios from 'axios';
 
-const CourseList = ({ onEnroll }) => {
+const CourseList = () => {
   const [courses, setCourses] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:3001/courses')
+    axios.get('https://655500aa63cafc694fe75243.mockapi.io/course')
       .then(response => setCourses(response.data))
       .catch(error => console.error('Error fetching courses:', error));
   }, []);
 
   const filteredCourses = courses.filter(course =>
-    course.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    course.instructor.toLowerCase().includes(searchTerm.toLowerCase())
+    (course.name && course.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+    (course.instructor && course.instructor.toLowerCase().includes(searchTerm.toLowerCase()))
   );
+  
 
   return (
     <div className="container mt-4">
@@ -43,7 +44,7 @@ const CourseList = ({ onEnroll }) => {
         {filteredCourses.length > 0 ? (
           filteredCourses.map(course => (
             <div key={course.id} className="col mb-4">
-              <Link to={`/course/${course.id}`} className="text-decoration-none text-dark">
+            
                 <div className="card h-100">
                   <img src={course.thumbnail} alt={course.name} className="card-img-top" />
                   <div className="card-body">
@@ -52,12 +53,10 @@ const CourseList = ({ onEnroll }) => {
                     <p className="card-text"><strong>Status:</strong> {course.enrollmentStatus}</p>
                     <p className="card-text"><strong>Duration:</strong> {course.duration}</p>
                     <p className="card-text"><strong>Location:</strong> {course.location}</p>
-                    <button className="btn btn-primary" onClick={() => onEnroll(course.id)}>
-                      Enroll
-                    </button>
+                    
                   </div>
                 </div>
-              </Link>
+              
             </div>
           ))
         ) : (
