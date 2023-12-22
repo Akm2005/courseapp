@@ -1,17 +1,16 @@
-// RegistrationPage.jsx
-import { toast } from 'react-toastify';
-import React, { useState } from 'react';
-import { Card, Form, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+import React, { useState } from "react";
+import { Card, Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({
-    username: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    username: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -21,15 +20,15 @@ const RegistrationPage = () => {
     const { name, value } = e.target;
 
     // Input validation
-    if (name === 'username' && value.length > 30) {
-      console.error('Username is required');
-      toast.error('Username is required');
+    if (name === "username" && value.length > 30) {
+      console.error("Username is required");
+      toast.error("Username is required");
       return;
     }
 
-    if (name === 'password' && value.length > 50) {
-      console.error('Password is required');
-      toast.error('Password is required');
+    if (name === "password" && value.length > 50) {
+      console.error("Password is required");
+      toast.error("Password is required");
       return;
     }
 
@@ -43,26 +42,26 @@ const RegistrationPage = () => {
     const errors = {};
     // Add your validation logic here
     if (!formData.username.trim()) {
-      errors.username = 'Username is required';
+      errors.username = "Username is required";
     }
     if (!formData.firstName.trim()) {
-      errors.firstName = 'First Name is required';
+      errors.firstName = "First Name is required";
     }
     if (!formData.lastName.trim()) {
-      errors.lastName = 'Last Name is required';
+      errors.lastName = "Last Name is required";
     }
     if (!formData.email.trim()) {
-      errors.email = 'Email is required';
+      errors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = 'Invalid email address';
+      errors.email = "Invalid email address";
     }
     if (!formData.password.trim()) {
-      errors.password = 'Password is required';
+      errors.password = "Password is required";
     } else if (formData.password.length < 6) {
-      errors.password = 'Password must be at least 6 characters long';
+      errors.password = "Password must be at least 6 characters long";
     }
     if (formData.password !== formData.confirmPassword) {
-      errors.confirmPassword = 'Passwords do not match';
+      errors.confirmPassword = "Passwords do not match";
     }
 
     setErrors(errors);
@@ -72,127 +71,198 @@ const RegistrationPage = () => {
   const handleSubmit = () => {
     if (validateForm()) {
       // Save user data to JSON server
-      fetch('https://655500aa63cafc694fe75243.mockapi.io/aman', {
-        method: 'POST',
+      fetch("https://655500aa63cafc694fe75243.mockapi.io/aman", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log('User registered:', data);
+          console.log("User registered:", data);
           // Save user information in localStorage
-          localStorage.setItem('currentUser', JSON.stringify(data));
+          localStorage.setItem("currentUser", JSON.stringify(data));
           // Show alert after successful registration
-          toast.success('Registration successful! Now you can log in.');
+          toast.success("Registration successful! Now you can log in.");
           // Navigate to dashboard or profile page after successful registration
-          navigate('/dashboard');
+          navigate("/dashboard");
         })
-        .catch((error) => console.error('Error registering user:', error));
+        .catch((error) => console.error("Error registering user:", error));
     }
   };
 
   return (
-    <div style={{ backgroundColor: '#e6f2ff', minHeight: '100vh', padding: '10px' }}>
-      <div className="d-flex justify-content-center">
-        <Card style={{ width: '100%', maxWidth: '400px', margin: '20px', border: 'none' }}>
-          <Card.Body>
-            <Card.Title className="text-center">Registration Page</Card.Title>
-            <Form>
-              <Form.Group controlId="formUsername">
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="username"
-                  maxLength="30"
-                  value={formData.username}
-                  onChange={handleChange}
-                  placeholder="Enter username"
-                  isInvalid={errors.username}
-                />
-                <Form.Control.Feedback type="invalid">{errors.username}</Form.Control.Feedback>
-              </Form.Group>
+    <div
+      style={{
+        backgroundImage:
+          "url(https://static.vecteezy.com/system/resources/previews/001/937/563/non_2x/online-education-application-learning-worldwide-on-computer-mobile-website-background-social-distance-concept-the-classroom-training-course-library-illustration-flat-vector.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+        padding: "10px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div
+        style={{
+          width: "90%",
+          maxWidth: "400px",
+          padding: "10px",
+          position: "relative",
+          opacity: "0.9",
+          border: "solid red 1px",
+          backgroundColor: "rgba(173, 216, 230, 0.7)",
+        }}
+      >
+        <Form>
+          <Form.Group controlId="formUsername">
+            <Form.Control
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="Enter username"
+              maxLength="30"
+              isInvalid={errors.username}
+              style={{
+                width: "100%",
+                borderBottom: "2px solid #007BFF",
+                marginBottom: "10px",
+                background: "transparent",
+                border: "none",
+              }}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.username}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-              <Form.Group controlId="formFirstName">
-                <Form.Label>First Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="firstName"
-                  maxLength="50"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  placeholder="Enter first name"
-                  isInvalid={errors.firstName}
-                />
-                <Form.Control.Feedback type="invalid">{errors.firstName}</Form.Control.Feedback>
-              </Form.Group>
+          <Form.Group controlId="formFirstName">
+            <Form.Control
+              type="text"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              placeholder="Enter first name"
+              maxLength="50"
+              isInvalid={errors.firstName}
+              style={{
+                width: "100%",
+                borderBottom: "2px solid #007BFF",
+                marginBottom: "10px",
+                background: "transparent",
+                border: "none",
+              }}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.firstName}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-              <Form.Group controlId="formLastName">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="lastName"
-                  maxLength="50"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  placeholder="Enter last name"
-                  isInvalid={errors.lastName}
-                />
-                <Form.Control.Feedback type="invalid">{errors.lastName}</Form.Control.Feedback>
-              </Form.Group>
+          <Form.Group controlId="formLastName">
+            <Form.Control
+              type="text"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              placeholder="Enter last name"
+              maxLength="50"
+              isInvalid={errors.lastName}
+              style={{
+                width: "100%",
+                borderBottom: "2px solid #007BFF",
+                marginBottom: "10px",
+                background: "transparent",
+                border: "none",
+              }}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.lastName}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-              <Form.Group controlId="formEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="email"
-                  maxLength="50"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Enter email"
-                  isInvalid={errors.email}
-                />
-                <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
-              </Form.Group>
+          <Form.Group controlId="formEmail">
+            <Form.Control
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter email"
+              maxLength="50"
+              isInvalid={errors.email}
+              style={{
+                width: "100%",
+                borderBottom: "2px solid #007BFF",
+                marginBottom: "10px",
+                background: "transparent",
+                border: "none",
+              }}
+            />
+            <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+          </Form.Group>
 
-              <Form.Group controlId="formPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  maxLength="50"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="Enter password"
-                  isInvalid={errors.password}
-                />
-                <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
-              </Form.Group>
+          <Form.Group controlId="formPassword">
+            <Form.Control
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Enter password"
+              maxLength="50"
+              isInvalid={errors.password}
+              style={{
+                width: "100%",
+                borderBottom: "2px solid #007BFF",
+                marginBottom: "10px",
+                background: "transparent",
+                border: "none",
+              }}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.password}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-              <Form.Group controlId="formConfirmPassword">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  maxLength="50"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  placeholder="Confirm password"
-                  isInvalid={errors.confirmPassword}
-                />
-                <Form.Control.Feedback type="invalid">{errors.confirmPassword}</Form.Control.Feedback>
-              </Form.Group>
+          <Form.Group controlId="formConfirmPassword">
+            <Form.Control
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              placeholder="Confirm password"
+              maxLength="50"
+              isInvalid={errors.confirmPassword}
+              style={{
+                width: "100%",
+                borderBottom: "2px solid #007BFF",
+                marginBottom: "10px",
+                background: "transparent",
+                border: "none",
+              }}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.confirmPassword}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-              <Button variant="primary" onClick={handleSubmit} style={{ margin: '10px', marginLeft: '40px' }}>
-                Register
-              </Button>
-              <Button variant="secondary" onClick={() => navigate(-1)} style={{ margin: '10px', marginLeft: '40px' }}>
-                Back
-              </Button>
-            </Form>
-          </Card.Body>
-        </Card>
+          <Button
+            variant="primary"
+            onClick={handleSubmit}
+            style={{ margin: "10px", width: "43%" }}
+          >
+            Register
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => navigate(-1)}
+            style={{ margin: "10px", width: "43%" }}
+          >
+            Back
+          </Button>
+        </Form>
       </div>
     </div>
   );
