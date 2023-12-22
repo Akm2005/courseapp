@@ -37,11 +37,11 @@
     },
     {
       "id": 2,
-      "name": "Another Course",
+      "name": "js course",
       "instructor": "yash dubay",
       "description": "Another course description.",
       "enrollmentStatus": "Open",
-      "thumbnail": "https://www.filepicker.io/api/file/S5atf80QTb2tZOScHsiW",
+      "thumbnail": "https://d1jnx9ba8s6j9r.cloudfront.net/imgver.1551437392/img/co_img_1520_1631891680.png",
       "duration": "10 weeks",
       "schedule": "Mondays and Wednesdays, 7:00 PM - 9:00 PM",
       "location": "Online",

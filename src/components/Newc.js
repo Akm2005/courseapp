@@ -48,7 +48,7 @@ const Newc = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://655500aa63cafc694fe75243.mockapi.io/course', formData);
+      const response = await axios.post('http://localhost:3002/courses', formData);
       console.log('Data saved successfully:', response.data);
       setFormData({
         id: '',

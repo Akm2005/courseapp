@@ -7,6 +7,7 @@ import StudentDashboard from './components/StudentDashboard';
 import Login from './components/Login';
 import Register from './components/Register';
 import Newc from './components/Newc';
+import CourseDetails from './components/CourseDetails';
 function App() {
   return (
     <BrowserRouter>
@@ -15,6 +16,7 @@ function App() {
         <Route path="/r" element={<Register/>} />
         <Route path="/new" element={<Newc />} />
         <Route path="/dashboard" element={<StudentDashboard/>} />
+        <Route path="/course/:id" element={<CourseDetails />} />
       </Routes>
     </BrowserRouter>
   );

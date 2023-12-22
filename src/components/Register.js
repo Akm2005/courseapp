@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import React, { useState } from "react";
-import { Card, Form, Button } from "react-bootstrap";
+import {  Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const RegistrationPage = () => {
@@ -113,7 +113,7 @@ const RegistrationPage = () => {
           padding: "10px",
           position: "relative",
           opacity: "0.9",
-          border: "solid red 1px",
+          borderRadius: '5%',
           backgroundColor: "rgba(173, 216, 230, 0.7)",
         }}
       >

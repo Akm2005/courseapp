@@ -101,7 +101,7 @@ const LoginPage = () => {
         padding: "10px",
         position: "relative",
         opacity: "0.9",
-        border: "solid red 1px",
+        borderRadius: '5%',
         backgroundColor: "rgba(173, 216, 230, 0.7)",
       }}
     >
